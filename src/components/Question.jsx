@@ -7,7 +7,7 @@ function Question({ question, options, selected, isCorrect, handleAnswer }) {
       <div className="grid gap-3">
         {options.map((option, index) => {
           let btnClass =
-            "px-4 py-2 rounded-xl font-semibold transition shadow-md w-full sm:w-auto cursor-pointer duration-300 "
+            "px-4 py-2 rounded-xl font-semibold transition duration-500 shadow-md w-full sm:w-auto cursor-pointer "
 
           if (selected === option) {
             btnClass += isCorrect
