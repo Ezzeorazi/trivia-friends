@@ -39,7 +39,7 @@ function Trivia() {
       } else {
         setFinished(true)
       }
-    }, 500)
+    }, 700)
   }
 
   const restartGame = () => {
@@ -54,7 +54,11 @@ function Trivia() {
   const progress = Math.min(((current + 1) / questions.length) * 100, 100)
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-4 w-full max-w-md text-center">
+    <div className="bg-white rounded-2xl shadow-xl p-4 w-full max-w-md mx-auto text-center
+      sm:p-8 sm:max-w-lg
+      animate-fade-in"
+      style={{ minHeight: "400px" }}
+    >
       {/* Barra de progreso */}
       <div className="w-full bg-gray-200 rounded-full h-4 mb-6">
         <div
@@ -65,22 +69,22 @@ function Trivia() {
 
       {!finished ? (
         <>
-          <h2 className="text-2xl font-bold mb-4 text-purple-700">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-purple-700 animate-fade-in">
             {questions[current].question}
           </h2>
 
-          <div className="grid gap-3 ">
+          <div className="grid gap-3">
             {questions[current].options.map((option, index) => {
               let btnClass =
-                "px-4 py-2 rounded-xl font-semibold transition shadow-md "
+                "px-4 py-2 rounded-xl font-semibold transition shadow-md w-full sm:w-auto cursor-pointer duration-300 "
 
               if (selected === option) {
                 btnClass += isCorrect
-                  ? "bg-green-400 text-white cursor-pointer"
-                  : "bg-red-400 text-white cursor-pointer"
+                  ? "bg-green-400 text-white scale-105"
+                  : "bg-red-400 text-white scale-105"
               } else {
                 btnClass +=
-                  "bg-pastelPink hover:bg-pastelPurple text-black cursor-pointer"
+                  "bg-pink-200 hover:bg-purple-200 text-black"
               }
 
               return (
@@ -89,6 +93,9 @@ function Trivia() {
                   onClick={() => !selected && handleAnswer(option)}
                   className={btnClass}
                   disabled={!!selected}
+                  style={{
+                    opacity: selected && selected !== option ? 0.7 : 1,
+                  }}
                 >
                   {option}
                 </button>
@@ -96,19 +103,19 @@ function Trivia() {
             })}
           </div>
 
-          <p className="mt-4 text-gray-600">
-            Pregunta {current + 1} de {questions.length}
+          <p className="mt-4 text-gray-600 text-sm sm:text-base">
+            Pregunta <span className="font-bold">{current + 1}</span> de <span className="font-bold">{questions.length}</span>
           </p>
         </>
       ) : (
         <>
-          <h2 className="text-3xl font-bold text-green-600">¡Juego terminado!</h2>
+          <h2 className="text-3xl font-bold text-green-600 animate-bounce">¡Juego terminado!</h2>
           <p className="mt-4 text-lg text-gray-700">
-            Tu puntaje: {score} / {questions.length}
+            Tu puntaje: <span className="font-bold text-purple-700">{score}</span> / {questions.length}
           </p>
           <button
             onClick={restartGame}
-            className="mt-6 px-6 py-2 bg-pastelBlue hover:bg-pastelGreen rounded-xl text-black font-semibold transition cursor-pointer"
+            className="mt-6 px-6 py-2 bg-blue-300 hover:bg-green-300 rounded-xl text-black font-semibold transition cursor-pointer shadow-lg animate-fade-in"
           >
             Jugar de nuevo
           </button>
