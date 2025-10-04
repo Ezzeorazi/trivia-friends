@@ -1,11 +1,15 @@
-import Trivia from "../components/Trivia"
 import { useNavigate } from "react-router-dom"
 
 function Home() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4">
+    <div className="flex flex-col items-center justify-start min-h-[80vh] pt-16 px-4">
+      <img
+        src="friends-seeklogo.png"
+        alt="Logo Friends"
+        className="mx-auto mb-6 w-62 sm:w-100"
+      />      
       <h2 className="text-3xl sm:text-4xl font-bold text-purple-800 mb-4 text-center">
         Bienvenido 👋
       </h2>
@@ -20,6 +24,6 @@ function Home() {
       </button>
     </div>
   )
-  }
+}
 
 export default Home

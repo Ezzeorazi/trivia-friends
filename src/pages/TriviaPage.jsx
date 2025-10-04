@@ -2,7 +2,7 @@ import Trivia from "../components/Trivia"
 
 function TriviaPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-start justify-center min-h-[80vh] pt-16">
       <Trivia />
     </div>
   )

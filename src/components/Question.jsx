@@ -14,7 +14,7 @@ function Question({ question, options, selected, isCorrect, handleAnswer }) {
               ? "bg-green-400 text-white scale-105"
               : "bg-red-400 text-white scale-105"
           } else {
-            btnClass += "bg-pink-200 hover:bg-purple-200 text-black"
+            btnClass += "bg-pink-200 text-black"
           }
 
           return (

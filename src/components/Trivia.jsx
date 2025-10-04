@@ -55,7 +55,7 @@ function Trivia() {
   const progress = Math.min(((current + 1) / questions.length) * 100, 100)
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-4 w-full max-w-md mx-auto text-center sm:p-8 sm:max-w-lg animate-fade-in" style={{ minHeight: "400px" }}>
+    <div className="bg-white rounded-2xl shadow-xl p-2 w-full max-w-md mx-auto text-center sm:p-2 sm:max-w-lg animate-fade-in" style={{ minHeight: "400px" }}>
       <ProgressBar current={current} total={questions.length} progress={progress} />
       {!finished ? (
         <Question
