@@ -1,23 +1,36 @@
 import { useState } from "react"
-import questions from "../data/questions"
+import questionsData from "../data/questions"
+
+// 🔹 Función para mezclar un array
+function shuffle(array) {
+  return [...array].sort(() => Math.random() - 0.5)
+}
+
+// 🔹 Mezcla las preguntas y también las opciones de cada una
+function prepareQuestions(data) {
+  return shuffle(
+    data.map((q) => ({
+      ...q,
+      options: shuffle(q.options),
+    }))
+  )
+}
 
 function Trivia() {
+  const [questions, setQuestions] = useState(prepareQuestions(questionsData))
   const [current, setCurrent] = useState(0)
   const [score, setScore] = useState(0)
   const [finished, setFinished] = useState(false)
-  const [selected, setSelected] = useState(null) // opción elegida
-  const [isCorrect, setIsCorrect] = useState(null) // true / false
+  const [selected, setSelected] = useState(null)
+  const [isCorrect, setIsCorrect] = useState(null)
 
   const handleAnswer = (option) => {
     setSelected(option)
     const correct = option === questions[current].answer
     setIsCorrect(correct)
 
-    if (correct) {
-      setScore(score + 1)
-    }
+    if (correct) setScore(score + 1)
 
-    // Espera 1 segundo para mostrar colores antes de pasar
     setTimeout(() => {
       if (current + 1 < questions.length) {
         setCurrent(current + 1)
@@ -30,6 +43,7 @@ function Trivia() {
   }
 
   const restartGame = () => {
+    setQuestions(prepareQuestions(questionsData)) // 🔹 vuelve a mezclar todo
     setCurrent(0)
     setScore(0)
     setFinished(false)
@@ -37,7 +51,6 @@ function Trivia() {
     setIsCorrect(null)
   }
 
-  // cálculo de progreso entre 0 y 100
   const progress = Math.min(((current + 1) / questions.length) * 100, 100)
 
   return (
@@ -75,7 +88,7 @@ function Trivia() {
                   key={index}
                   onClick={() => !selected && handleAnswer(option)}
                   className={btnClass}
-                  disabled={!!selected} // desactiva mientras se muestra el feedback
+                  disabled={!!selected}
                 >
                   {option}
                 </button>
