@@ -1,9 +1,5 @@
 const questions = [
-  {
-    question: "¿Cuántas lesiones hizo Mónica?",
-    options: ["11", "9", "7", "12"],
-    answer: "11",
-  },
+  
   {
     question: "¿A qué es alérgico Ross?",
     options: ["Kiwi", "Maní", "Gatos", "Polvo"],
