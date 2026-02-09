@@ -4,6 +4,17 @@ function Footer() {
       <p>
         © {new Date().getFullYear()} Friends Trivia | ✨ | 
       </p>
+      <span>
+            Desarrollado por{" "}
+            <a
+              href="https://ezequiel-orazi.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:text-accent-hover transition font-medium"
+            >
+              Ezequiel Orazi
+            </a>
+          </span>
     </footer>
   )
 }
